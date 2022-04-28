@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1018019155647",
+    "project_id": "medinfo-f2dc3",
+    "storage_bucket": "medinfo-f2dc3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018019155647:android:f9559a83c944bd0efe000a",
+        "android_client_info": {
+          "package_name": "com.example.med_info"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1018019155647-42r62jb4ja5q662387rhbm83u7q2lo7l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvQsEQGIVDkHy33qlJfA7lJNPQrmYtONM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1018019155647-42r62jb4ja5q662387rhbm83u7q2lo7l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
