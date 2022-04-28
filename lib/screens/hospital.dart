@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_info/Information/Doctors/doctorsShow.dart';
 import 'package:med_info/Information/beds.dart';
 import 'package:med_info/Information/services.dart';
 import 'package:med_info/screens/Widgets/cards.dart';
@@ -29,7 +30,7 @@ class _HospitalState extends State<Hospital> {
                 Maintitle: "About US",
                 Subsubtitle: "Subtitle 1",
                 shade: Colors.amber,
-                toScreen: AboutShow(),
+                toScreen: DoctorShow(),
               ),
               Cards(
                 Maintitle: "Update Beds Availability",
