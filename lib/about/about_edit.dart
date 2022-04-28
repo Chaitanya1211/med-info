@@ -48,19 +48,19 @@ class _AboutUsEditState extends State<AboutUsEdit> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Edit Personal Information"),
+          title: const Text("Edit Personal Information"),
         ),
         body: Form(
             key: _formKey,
             child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
               child: ListView(
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
                     child: TextFormField(
                       autofocus: false,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Street Name',
                         labelStyle: TextStyle(fontSize: 20.0),
                         border: OutlineInputBorder(),
@@ -77,12 +77,12 @@ class _AboutUsEditState extends State<AboutUsEdit> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
                     child: TextFormField(
                       autofocus: false,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'City',
-                        labelStyle: TextStyle(fontSize: 20.0),
+                        labelStyle: const TextStyle(fontSize: 20.0),
                         border: OutlineInputBorder(),
                         errorStyle:
                             TextStyle(color: Colors.redAccent, fontSize: 15),
@@ -97,12 +97,12 @@ class _AboutUsEditState extends State<AboutUsEdit> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
                     child: TextFormField(
                       autofocus: false,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'State',
-                        labelStyle: TextStyle(fontSize: 20.0),
+                        labelStyle: const TextStyle(fontSize: 20.0),
                         border: OutlineInputBorder(),
                         errorStyle:
                             TextStyle(color: Colors.redAccent, fontSize: 15),
@@ -117,12 +117,12 @@ class _AboutUsEditState extends State<AboutUsEdit> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
                     child: TextFormField(
                       autofocus: false,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Pincode',
-                        labelStyle: TextStyle(fontSize: 20.0),
+                        labelStyle: const TextStyle(fontSize: 20.0),
                         border: OutlineInputBorder(),
                         errorStyle:
                             TextStyle(color: Colors.redAccent, fontSize: 15),
@@ -137,15 +137,15 @@ class _AboutUsEditState extends State<AboutUsEdit> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
                     child: TextFormField(
                       autofocus: false,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Year of establishment',
-                        labelStyle: TextStyle(fontSize: 20.0),
+                        labelStyle: const TextStyle(fontSize: 20.0),
                         border: OutlineInputBorder(),
-                        errorStyle:
-                            TextStyle(color: Colors.redAccent, fontSize: 15),
+                        errorStyle: const TextStyle(
+                            color: Colors.redAccent, fontSize: 15),
                       ),
                       controller: _established,
                       validator: (value) {
@@ -157,12 +157,12 @@ class _AboutUsEditState extends State<AboutUsEdit> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
                     child: TextFormField(
                       autofocus: false,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Start time',
-                        labelStyle: TextStyle(fontSize: 20.0),
+                        labelStyle: const TextStyle(fontSize: 20.0),
                         border: OutlineInputBorder(),
                         errorStyle:
                             TextStyle(color: Colors.redAccent, fontSize: 15),
@@ -192,10 +192,10 @@ class _AboutUsEditState extends State<AboutUsEdit> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
                     child: TextFormField(
                       autofocus: false,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'End time',
                         labelStyle: TextStyle(fontSize: 20.0),
                         border: OutlineInputBorder(),
@@ -227,10 +227,10 @@ class _AboutUsEditState extends State<AboutUsEdit> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
                     child: TextFormField(
                       autofocus: false,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Phone Number',
                         labelStyle: TextStyle(fontSize: 20.0),
                         border: OutlineInputBorder(),
@@ -247,13 +247,13 @@ class _AboutUsEditState extends State<AboutUsEdit> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
                     child: TextFormField(
                       autofocus: false,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Email',
-                        labelStyle: TextStyle(fontSize: 20.0),
-                        border: OutlineInputBorder(),
+                        labelStyle: const TextStyle(fontSize: 20.0),
+                        border: const OutlineInputBorder(),
                         errorStyle:
                             TextStyle(color: Colors.redAccent, fontSize: 15),
                       ),
@@ -267,15 +267,15 @@ class _AboutUsEditState extends State<AboutUsEdit> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10.0),
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
                     child: TextFormField(
                       autofocus: false,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Website Link',
-                        labelStyle: TextStyle(fontSize: 20.0),
-                        border: OutlineInputBorder(),
-                        errorStyle:
-                            TextStyle(color: Colors.redAccent, fontSize: 15),
+                        labelStyle: const TextStyle(fontSize: 20.0),
+                        border: const OutlineInputBorder(),
+                        errorStyle: const TextStyle(
+                            color: Colors.redAccent, fontSize: 15),
                       ),
                       controller: _url,
                       validator: (value) {

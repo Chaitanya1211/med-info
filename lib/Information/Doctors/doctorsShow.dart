@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:med_info/Information/Doctors/doctorsAdd.dart';
+import 'package:med_info/Information/Doctors/doctorsEdit.dart';
 
 class DoctorShow extends StatefulWidget {
   const DoctorShow({Key? key}) : super(key: key);
@@ -92,14 +93,32 @@ class _DoctorShowState extends State<DoctorShow> {
                               Text("Experience : ${storedocs[i]['docExp']}")
                             ],
                           ),
-                          IconButton(
-                              onPressed: () {
-                                deleteUser(storedocs[i]['id']);
-                              },
-                              icon: Icon(
-                                Icons.delete,
-                                color: Colors.red,
-                              ))
+                          Column(
+                            children: [
+                              IconButton(
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                new DoctorEdit(
+                                                  id: storedocs[i]['id'],
+                                                )));
+                                  },
+                                  icon: const Icon(
+                                    Icons.edit,
+                                    color: Colors.red,
+                                  )),
+                              IconButton(
+                                  onPressed: () {
+                                    deleteUser(storedocs[i]['id']);
+                                  },
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    color: Colors.red,
+                                  )),
+                            ],
+                          )
                         ],
                       ),
                     )
