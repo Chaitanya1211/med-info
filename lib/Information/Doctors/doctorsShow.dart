@@ -64,62 +64,131 @@ class _DoctorShowState extends State<DoctorShow> {
           }).toList();
           return Scaffold(
             body: Container(
-              margin: EdgeInsetsDirectional.fromSTEB(1, 10, 0, 10),
+              color: Color.fromARGB(255, 142, 233, 145),
+              margin: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 15),
               child: ListView(
+                padding: EdgeInsets.all(15),
                 children: [
                   for (var i = 0; i < storedocs.length; i++) ...[
-                    Container(
-                      padding: EdgeInsets.all(15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: 90,
-                            width: 90,
-                            color: Colors.amber,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Column(
-                            children: [
-                              Text("Name : ${storedocs[i]['docName']}"),
-                              Text(
-                                  "Registration No : ${storedocs[i]['docRegNo']}"),
-                              Text(
-                                  "Qualification : ${storedocs[i]['docQuali']}"),
-                              Text("Speciality : ${storedocs[i]['docSpec']}"),
-                              Text("Experience : ${storedocs[i]['docExp']}")
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                new DoctorEdit(
-                                                  id: storedocs[i]['id'],
-                                                )));
-                                  },
-                                  icon: const Icon(
-                                    Icons.edit,
-                                    color: Colors.red,
-                                  )),
-                              IconButton(
-                                  onPressed: () {
-                                    deleteUser(storedocs[i]['id']);
-                                  },
-                                  icon: const Icon(
-                                    Icons.delete,
-                                    color: Colors.red,
-                                  )),
-                            ],
-                          )
-                        ],
+                    Card(
+                      child: Padding(
+                        padding: EdgeInsets.all(15),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                                height: MediaQuery.of(context).size.width * 0.5,
+                                width: double.infinity,
+                                color: Colors.amberAccent),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Name",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(storedocs[i]['docName'])
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Registration No",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(storedocs[i]['docRegNo'])
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Qualification",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(storedocs[i]['docQuali'])
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Speciality",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(storedocs[i]['docSpec'])
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Experience",
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(storedocs[i]['docExp'])
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  new DoctorEdit(
+                                                    id: storedocs[i]['id'],
+                                                  )));
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Icon(Icons.edit),
+                                        Text("Edit")
+                                      ],
+                                    )),
+                                SizedBox(width: 10),
+                                ElevatedButton(
+                                    onPressed: () {
+                                      deleteUser(storedocs[i]['id']);
+                                    },
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
+                                        Text("Delete")
+                                      ],
+                                    ))
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     )
                   ]
@@ -136,43 +205,5 @@ class _DoctorShowState extends State<DoctorShow> {
             ),
           );
         });
-    // return Scaffold(
-    //   body: Center(
-    //     child: ListView(
-    //       children: [
-    //         Container(
-    //           child: Row(
-    //             mainAxisAlignment: MainAxisAlignment.start,
-    //             crossAxisAlignment: CrossAxisAlignment.center,
-    //             children: [
-    //               Container(
-    //                 height: 60,
-    //                 width: 60,
-    //                 color: Colors.amber,
-    //               ),
-    //               Column(
-    //                 children: [
-    //                   Text("Name"),
-    //                   Text("Registration No"),
-    //                   Text("Qualification"),
-    //                   Text("Speciality"),
-    //                   Text("Experience")
-    //                 ],
-    //               )
-    //             ],
-    //           ),
-    //         )
-    //       ],
-    //     ),
-    //   ),
-    //   floatingActionButton: FloatingActionButton(
-    //     elevation: 2,
-    //     child: const Icon(Icons.add),
-    //     onPressed: () {
-    //       Navigator.push(context,
-    //           MaterialPageRoute(builder: (context) => const DoctorAdd()));
-    //     },
-    //   ),
-    // );
   }
 }
