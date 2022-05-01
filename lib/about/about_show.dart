@@ -32,7 +32,8 @@ class _AboutShowState extends State<AboutShow> {
               if (snapshot.hasData) {
                 var output = snapshot.data!.data();
                 // ignore: unused_local_variable
-                var instituteName = output!['institutename']; // <-- Your value
+                var instituteName = output!['institutename'];
+                var image = output['image']; // <-- Your value
                 return Card(
                   margin: const EdgeInsets.all(60),
                   color: const Color.fromARGB(255, 185, 184, 184),
@@ -61,7 +62,26 @@ class _AboutShowState extends State<AboutShow> {
                         Text("Phone Number : ${output['phNo']}"),
                         Text("Email : ${output['contactEmail']}"),
                         Text("Website Link : ${output['url']}"),
-                        Text("Last Edited on ${output['lastUpdatedOn']}")
+                        Text("Last Edited on ${output['lastUpdatedOn']}"),
+                        Padding(
+                          padding: EdgeInsets.all(8),
+                          child: Image.network(
+                            image,
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  value: loadingProgress.expectedTotalBytes !=
+                                          null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                      : null,
+                                ),
+                              );
+                            },
+                          ),
+                        )
                       ],
                     ),
                   ),
