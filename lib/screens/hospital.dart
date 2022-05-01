@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_info/Information/Doctors/doctorsShow.dart';
+import 'package:med_info/Information/Services/servicesShow.dart';
 import 'package:med_info/Information/beds.dart';
-import 'package:med_info/Information/services.dart';
 import 'package:med_info/screens/Widgets/cards.dart';
 import 'package:med_info/screens/Widgets/drawer.dart';
 
@@ -42,7 +42,7 @@ class _HospitalState extends State<Hospital> {
                 Maintitle: "Update Services",
                 Subsubtitle: "Subtitle 3",
                 shade: Colors.green,
-                toScreen: Services(),
+                toScreen: ServicesShow(),
               )
             ],
           )),

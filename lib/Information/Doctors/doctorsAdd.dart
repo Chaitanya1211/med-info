@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:med_info/Information/Doctors/doctorsShow.dart';
+import 'package:image_picker/image_picker.dart';
 
 class DoctorAdd extends StatefulWidget {
   const DoctorAdd({Key? key}) : super(key: key);
@@ -13,11 +14,13 @@ class DoctorAdd extends StatefulWidget {
 
 class _DoctorAddState extends State<DoctorAdd> {
   final _formKey = GlobalKey<FormState>();
+
   TextEditingController _docName = TextEditingController();
   TextEditingController _docQuali = TextEditingController();
   TextEditingController _docExp = TextEditingController();
   TextEditingController _docSpec = TextEditingController();
   TextEditingController _docRegNo = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
