@@ -5,24 +5,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:med_info/Information/Doctors/doctorsShow.dart';
 import 'package:image_picker/image_picker.dart';
 
-class DoctorAdd extends StatefulWidget {
-  const DoctorAdd({Key? key}) : super(key: key);
+class BedsAdd extends StatefulWidget {
+  const BedsAdd({Key? key}) : super(key: key);
 
   @override
-  State<DoctorAdd> createState() => _DoctorAddState();
+  State<BedsAdd> createState() => _BedsAddState();
 }
 
-class _DoctorAddState extends State<DoctorAdd> {
+class _BedsAddState extends State<BedsAdd> {
   final _formKey = GlobalKey<FormState>();
-  late String doctorImg;
-  TextEditingController _docName = TextEditingController();
-  TextEditingController _docQuali = TextEditingController();
-  TextEditingController _docExp = TextEditingController();
-  TextEditingController _docSpec = TextEditingController();
-  TextEditingController _docRegNo = TextEditingController();
+  late String bedImg;
+  TextEditingController _bedName = TextEditingController();
+  TextEditingController _bedCost = TextEditingController();
+  TextEditingController _bedType = TextEditingController();
+  // TextEditingController _serviceTime = TextEditingController();
+  // TextEditingController _serviceInfo = TextEditingController();
+  // TextEditingController _servicePrice = TextEditingController();
 
   late File _image;
   selectImage() async {
@@ -56,7 +56,7 @@ class _DoctorAddState extends State<DoctorAdd> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Add Doctors")),
+      appBar: AppBar(title: const Text("Add Bed Details")),
       body: Form(
           key: _formKey,
           child: Padding(
@@ -64,17 +64,17 @@ class _DoctorAddState extends State<DoctorAdd> {
             child: ListView(
               children: [
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 10.0),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0),
                   child: TextFormField(
                     autofocus: false,
-                    decoration: InputDecoration(
-                      labelText: 'Doctor Name',
-                      labelStyle: TextStyle(fontSize: 20.0),
-                      border: OutlineInputBorder(),
+                    decoration: const InputDecoration(
+                      labelText: 'Bed Name',
+                      labelStyle: const TextStyle(fontSize: 20.0),
+                      border: const OutlineInputBorder(),
                       errorStyle:
                           TextStyle(color: Colors.redAccent, fontSize: 15),
                     ),
-                    controller: _docName,
+                    controller: _bedName,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please Enter Name';
@@ -84,17 +84,17 @@ class _DoctorAddState extends State<DoctorAdd> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 10.0),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0),
                   child: TextFormField(
                     autofocus: false,
-                    decoration: InputDecoration(
-                      labelText: 'Doctor Registration Number',
-                      labelStyle: TextStyle(fontSize: 20.0),
-                      border: OutlineInputBorder(),
+                    decoration: const InputDecoration(
+                      labelText: 'Bed Type AC/Non AC',
+                      labelStyle: const TextStyle(fontSize: 20.0),
+                      border: const OutlineInputBorder(),
                       errorStyle:
                           TextStyle(color: Colors.redAccent, fontSize: 15),
                     ),
-                    controller: _docRegNo,
+                    controller: _bedType,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please Enter Name';
@@ -104,17 +104,17 @@ class _DoctorAddState extends State<DoctorAdd> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 10.0),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0),
                   child: TextFormField(
                     autofocus: false,
-                    decoration: InputDecoration(
-                      labelText: 'Doctor Qualification',
-                      labelStyle: TextStyle(fontSize: 20.0),
-                      border: OutlineInputBorder(),
+                    decoration: const InputDecoration(
+                      labelText: 'Bed Cost',
+                      labelStyle: const TextStyle(fontSize: 20.0),
+                      border: const OutlineInputBorder(),
                       errorStyle:
                           TextStyle(color: Colors.redAccent, fontSize: 15),
                     ),
-                    controller: _docQuali,
+                    controller: _bedCost,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please Enter Name';
@@ -124,67 +124,18 @@ class _DoctorAddState extends State<DoctorAdd> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 10.0),
-                  child: TextFormField(
-                    autofocus: false,
-                    decoration: InputDecoration(
-                      labelText: 'Doctor Experience',
-                      labelStyle: TextStyle(fontSize: 20.0),
-                      border: OutlineInputBorder(),
-                      errorStyle:
-                          TextStyle(color: Colors.redAccent, fontSize: 15),
-                    ),
-                    controller: _docExp,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please Enter Name';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 10.0),
-                  child: TextFormField(
-                    autofocus: false,
-                    decoration: InputDecoration(
-                      labelText: 'Doctor Specility',
-                      labelStyle: TextStyle(fontSize: 20.0),
-                      border: OutlineInputBorder(),
-                      errorStyle:
-                          TextStyle(color: Colors.redAccent, fontSize: 15),
-                    ),
-                    controller: _docSpec,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please Enter Name';
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-                Container(
-                  height: 50,
-                  width: double.infinity,
-                  child: Column(children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        ElevatedButton(
-                            onPressed: () {
-                              selectImage();
-                            },
-                            child: Text("Select Image")),
-                      ],
-                    )
-                  ]),
+                  child: ElevatedButton(
+                      onPressed: () {
+                        selectImage();
+                      },
+                      child: const Text("Add Image")),
                 ),
                 Container(
                     child: ElevatedButton(
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      doctorImg = await uploadFile(_image);
-                      if (doctorImg != null) {
+                      bedImg = await uploadFile(_image);
+                      if (bedImg != null) {
                         CollectionReference hospitals =
                             FirebaseFirestore.instance.collection('hospitals');
                         FirebaseAuth auth = FirebaseAuth.instance;
@@ -192,32 +143,27 @@ class _DoctorAddState extends State<DoctorAdd> {
                         FirebaseFirestore.instance
                             .collection('hospitals')
                             .doc(uid)
-                            .collection('doctors')
+                            .collection('beds')
                             .doc()
                             .set({
-                          "docName": _docName.text,
-                          "docQuali": _docQuali.text,
-                          "docExp": _docExp.text,
-                          "docSpec": _docSpec.text,
-                          "docRegNo": _docRegNo.text,
-                          "docImage": doctorImg.toString()
+                          "bedName": _bedName.text,
+                          "bedType": _bedType.text,
+                          "bedCost": _bedCost.text,
+                          "bedImage": bedImg.toString()
                         }).then((value) {
                           Fluttertoast.showToast(
-                              msg: "Information Updated successfully",
+                              msg: "Bed Added Successfully",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.BOTTOM,
                               timeInSecForIosWeb: 1,
                               backgroundColor: Colors.green,
                               textColor: Colors.white,
                               fontSize: 16.0);
-                          // Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(
-                          //         builder: (context) => const DoctorShow()));
+
                           Navigator.pop(context);
                         }).onError((error, stackTrace) {
                           Fluttertoast.showToast(
-                              msg: "Information Not Updated \n Try Again Later",
+                              msg: "Bed Not Added \n Try Again Later",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.BOTTOM,
                               timeInSecForIosWeb: 1,
@@ -227,17 +173,17 @@ class _DoctorAddState extends State<DoctorAdd> {
                         });
                       } else {
                         Fluttertoast.showToast(
-                            msg: "Please Fill all the Information",
+                            msg: "Please Fill all the information",
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.BOTTOM,
                             timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.green,
+                            backgroundColor: Colors.red,
                             textColor: Colors.white,
                             fontSize: 16.0);
                       }
                     }
                   },
-                  child: const Text("Add Doctor"),
+                  child: const Text("Add Bed"),
                 ))
               ],
             ),

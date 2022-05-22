@@ -104,10 +104,11 @@ class _SignUpState extends State<SignUp> {
                         "uid": value.user?.uid,
                         "license": _license.text
                       });
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const HospitalSignIn()));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => const HospitalSignIn()));
+                      Navigator.pop(context);
                     }).onError((error, stackTrace) {
                       print("USer not registered");
                       Fluttertoast.showToast(

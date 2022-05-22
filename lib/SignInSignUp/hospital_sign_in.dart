@@ -76,7 +76,7 @@ class _HospitalSignInState extends State<HospitalSignIn> {
               const Text("New Institution ?? "),
               GestureDetector(
                 child: const Text(
-                  "Sign In",
+                  "Sign Up",
                   style: TextStyle(
                     color: Colors.blue,
                   ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_info/Information/Doctors/doctorsShow.dart';
 import 'package:med_info/Information/Services/servicesShow.dart';
-import 'package:med_info/Information/beds.dart';
+import 'package:med_info/Information/Beds/bedsShow.dart';
 import 'package:med_info/screens/Widgets/cards.dart';
 import 'package:med_info/screens/Widgets/drawer.dart';
 
@@ -27,7 +27,7 @@ class _HospitalState extends State<Hospital> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Cards(
-                Maintitle: "About US",
+                Maintitle: "About Doctors",
                 Subsubtitle: "Subtitle 1",
                 shade: Colors.amber,
                 toScreen: DoctorShow(),

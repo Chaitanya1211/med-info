@@ -93,9 +93,11 @@ class _AboutShowState extends State<AboutShow> {
           ),
         ),
         // ignore: unnecessary_new
-        floatingActionButton: new FloatingActionButton(
-            elevation: 0.0,
-            child: const Icon(Icons.edit),
+        floatingActionButton: new FloatingActionButton.extended(
+            elevation: 10,
+            // child: const Icon(Icons.edit),
+            icon: Icon(Icons.edit),
+            label: Text("Edit Information"),
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const AboutUsEdit()));

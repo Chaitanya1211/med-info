@@ -6,25 +6,18 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:med_info/Information/Doctors/doctorsShow.dart';
 
-class DoctorEdit extends StatefulWidget {
+class BedsEdit extends StatefulWidget {
   final String id;
-  const DoctorEdit({Key? key, required this.id}) : super(key: key);
+  const BedsEdit({Key? key, required this.id}) : super(key: key);
 
   @override
-  State<DoctorEdit> createState() => _DoctorEditState();
+  State<BedsEdit> createState() => _BedsEditState();
 }
 
-class _DoctorEditState extends State<DoctorEdit> {
+class _BedsEditState extends State<BedsEdit> {
   final _formKey = GlobalKey<FormState>();
-  late String profileUrl;
-  TextEditingController _docName = TextEditingController();
-  TextEditingController _docQuali = TextEditingController();
-  TextEditingController _docExp = TextEditingController();
-  TextEditingController _docSpec = TextEditingController();
-  TextEditingController _docRegNo = TextEditingController();
-
+  late String bedImage;
   late File _image;
   selectImage() async {
     final picker = ImagePicker();
@@ -57,14 +50,14 @@ class _DoctorEditState extends State<DoctorEdit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Update Doctor's Information")),
+      appBar: AppBar(title: Text("Update Bed Details")),
       body: Form(
         key: _formKey,
         child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
             future: FirebaseFirestore.instance
                 .collection('hospitals')
                 .doc(FirebaseAuth.instance.currentUser?.uid.toString())
-                .collection('doctors')
+                .collection('beds')
                 .doc(widget.id)
                 .get(),
             builder: (BuildContext context,
@@ -77,17 +70,19 @@ class _DoctorEditState extends State<DoctorEdit> {
               }
               var data = (snapshot.data!.data() as Map<String, dynamic>);
               // data = ModalRoute.of(context)!.settings.arguments as Map;
-              // var name = data['docName'];
-              TextEditingController _docName =
-                  TextEditingController(text: data['docName']);
-              TextEditingController _docQuali =
-                  TextEditingController(text: data['docQuali']);
-              TextEditingController _docExp =
-                  TextEditingController(text: data['docExp']);
-              TextEditingController _docSpec =
-                  TextEditingController(text: data['docSpec']);
-              TextEditingController _docRegNo =
-                  TextEditingController(text: data['docRegNo']);
+              // var name = data['serviceName'];
+              TextEditingController _bedName =
+                  TextEditingController(text: data['bedName']);
+              TextEditingController _bedCost =
+                  TextEditingController(text: data['bedCost']);
+              TextEditingController _bedType =
+                  TextEditingController(text: data['bedType']);
+              // TextEditingController _serviceStart =
+              //     TextEditingController(text: data['serviceStart']);
+              // TextEditingController _serviceTime =
+              //     TextEditingController(text: data['serviceTime']);
+              // TextEditingController _servicePrice =
+              //     TextEditingController(text: data['servicePrice']);
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                 child: ListView(
@@ -95,16 +90,16 @@ class _DoctorEditState extends State<DoctorEdit> {
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 10.0),
                       child: TextFormField(
-                        // initialValue: data['docName'],
+                        // initialValue: data['serviceName'],
                         autofocus: false,
                         decoration: InputDecoration(
-                          labelText: 'Doctor Name',
+                          labelText: 'Bed Name',
                           labelStyle: TextStyle(fontSize: 20.0),
                           border: OutlineInputBorder(),
                           errorStyle:
                               TextStyle(color: Colors.redAccent, fontSize: 15),
                         ),
-                        controller: _docName,
+                        controller: _bedName,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please Enter Name';
@@ -120,13 +115,13 @@ class _DoctorEditState extends State<DoctorEdit> {
                         autofocus: false,
                         // ignore: prefer_const_constructors
                         decoration: InputDecoration(
-                          labelText: 'Doctor Registration Number',
+                          labelText: 'Bed Type',
                           labelStyle: TextStyle(fontSize: 20.0),
                           border: OutlineInputBorder(),
                           errorStyle:
                               TextStyle(color: Colors.redAccent, fontSize: 15),
                         ),
-                        controller: _docRegNo,
+                        controller: _bedType,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please Enter Name';
@@ -141,13 +136,13 @@ class _DoctorEditState extends State<DoctorEdit> {
                         // initialValue: data['docQuali'],
                         autofocus: false,
                         decoration: InputDecoration(
-                          labelText: 'Doctor Qualification',
+                          labelText: 'Bed Cost',
                           labelStyle: TextStyle(fontSize: 20.0),
                           border: OutlineInputBorder(),
                           errorStyle:
                               TextStyle(color: Colors.redAccent, fontSize: 15),
                         ),
-                        controller: _docQuali,
+                        controller: _bedCost,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please Enter Name';
@@ -156,48 +151,77 @@ class _DoctorEditState extends State<DoctorEdit> {
                         },
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10.0),
-                      child: TextFormField(
-                        // initialValue: data['docExp'],
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          labelText: 'Doctor Experience',
-                          labelStyle: TextStyle(fontSize: 20.0),
-                          border: OutlineInputBorder(),
-                          errorStyle:
-                              TextStyle(color: Colors.redAccent, fontSize: 15),
-                        ),
-                        controller: _docExp,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Enter Name';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10.0),
-                      child: TextFormField(
-                        // initialValue: data['docSpec'],
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          labelText: 'Doctor Specility',
-                          labelStyle: TextStyle(fontSize: 20.0),
-                          border: OutlineInputBorder(),
-                          errorStyle:
-                              TextStyle(color: Colors.redAccent, fontSize: 15),
-                        ),
-                        controller: _docSpec,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Enter Name';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
+                    // Container(
+                    //   margin: EdgeInsets.symmetric(vertical: 10.0),
+                    //   child: TextFormField(
+                    //     // initialValue: data['docExp'],
+                    //     autofocus: false,
+                    //     decoration: InputDecoration(
+                    //       labelText: 'Service Duration',
+                    //       labelStyle: TextStyle(fontSize: 20.0),
+                    //       border: OutlineInputBorder(),
+                    //       errorStyle:
+                    //           TextStyle(color: Colors.redAccent, fontSize: 15),
+                    //     ),
+                    //     controller: _serviceTime,
+                    //     validator: (value) {
+                    //       if (value == null || value.isEmpty) {
+                    //         return 'Please Enter Name';
+                    //       }
+                    //       return null;
+                    //     },
+                    //   ),
+                    // ),
+                    // Container(
+                    //   margin: EdgeInsets.symmetric(vertical: 10.0),
+                    //   child: TextFormField(
+                    //     // initialValue: data['docSpec'],
+                    //     autofocus: false,
+                    //     decoration: InputDecoration(
+                    //       labelText: 'Service Cost',
+                    //       labelStyle: TextStyle(fontSize: 20.0),
+                    //       border: OutlineInputBorder(),
+                    //       errorStyle:
+                    //           TextStyle(color: Colors.redAccent, fontSize: 15),
+                    //     ),
+                    //     controller: _servicePrice,
+                    //     validator: (value) {
+                    //       if (value == null || value.isEmpty) {
+                    //         return 'Please Enter Name';
+                    //       }
+                    //       return null;
+                    //     },
+                    //   ),
+                    // ),
+                    // Container(
+                    //   margin: EdgeInsets.symmetric(vertical: 10.0),
+                    //   child: TextFormField(
+                    //     // initialValue: data['docSpec'],
+                    //     autofocus: false,
+                    //     decoration: InputDecoration(
+                    //       labelText: 'Service Description',
+                    //       labelStyle: TextStyle(fontSize: 20.0),
+                    //       border: OutlineInputBorder(),
+                    //       errorStyle:
+                    //           TextStyle(color: Colors.redAccent, fontSize: 15),
+                    //     ),
+                    //     controller: _serviceInfo,
+                    //     validator: (value) {
+                    //       if (value == null || value.isEmpty) {
+                    //         return 'Please Enter Name';
+                    //       }
+                    //       return null;
+                    //     },
+                    //   ),
+                    // ),
+                    // Container(
+                    //   height: MediaQuery.of(context).size.width * 0.5,
+                    //   width: double.infinity,
+                    //   // color: Colors.amberAccent,
+                    //   decoration: BoxDecoration(
+                    //       image: DecorationImage(
+                    //           image: NetworkImage(data['serviceImage']))),
+                    // ),
                     Container(
                       child: ElevatedButton(
                         onPressed: () {
@@ -210,8 +234,8 @@ class _DoctorEditState extends State<DoctorEdit> {
                         child: ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          profileUrl = await uploadFile(_image);
-                          if (profileUrl != null) {
+                          bedImage = await uploadFile(_image);
+                          if (bedImage != null) {
                             CollectionReference hospitals = FirebaseFirestore
                                 .instance
                                 .collection('hospitals');
@@ -220,15 +244,16 @@ class _DoctorEditState extends State<DoctorEdit> {
                             FirebaseFirestore.instance
                                 .collection('hospitals')
                                 .doc(uid)
-                                .collection('doctors')
+                                .collection('beds')
                                 .doc(widget.id)
                                 .update({
-                              "docName": _docName.text,
-                              "docQuali": _docQuali.text,
-                              "docExp": _docExp.text,
-                              "docSpec": _docSpec.text,
-                              "docRegNo": _docRegNo.text,
-                              "docImage": profileUrl.toString()
+                              "bedName": _bedName.text,
+                              "bedCost": _bedCost.text,
+                              "bedType": _bedType.text,
+                              // "serviceTime": _serviceTime.text,
+                              // "servicePrice": _servicePrice.text,
+                              "bedImage": bedImage.toString(),
+                              // "serviceInfo": _serviceInfo.text
                             }).then((value) {
                               Fluttertoast.showToast(
                                   msg: "Information Updated successfully",
@@ -238,11 +263,7 @@ class _DoctorEditState extends State<DoctorEdit> {
                                   backgroundColor: Colors.green,
                                   textColor: Colors.white,
                                   fontSize: 16.0);
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             const DoctorShow()));
+
                               Navigator.pop(context);
                             }).onError((error, stackTrace) {
                               Fluttertoast.showToast(

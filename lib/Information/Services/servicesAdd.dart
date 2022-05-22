@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:med_info/Information/Services/servicesShow.dart';
 
 class ServicesAdd extends StatefulWidget {
@@ -13,30 +17,61 @@ class ServicesAdd extends StatefulWidget {
 
 class _ServicesAddState extends State<ServicesAdd> {
   final _formKey = GlobalKey<FormState>();
+  late String serviceImg;
   TextEditingController _serviceName = TextEditingController();
   TextEditingController _serviceStart = TextEditingController();
   TextEditingController _serviceEnd = TextEditingController();
   TextEditingController _serviceTime = TextEditingController();
   TextEditingController _serviceInfo = TextEditingController();
   TextEditingController _servicePrice = TextEditingController();
+
+  late File _image;
+  selectImage() async {
+    final picker = ImagePicker();
+    final imageFile = await picker.pickImage(source: ImageSource.gallery);
+    if (imageFile != null) {
+      _image = File(imageFile.path);
+      Fluttertoast.showToast(
+          msg: "Image selected successfully",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.green,
+          textColor: Colors.white,
+          fontSize: 16.0);
+    }
+  }
+
+  Future<String> uploadFile(File image) async {
+    String downloadURL;
+    String postId = DateTime.now().millisecondsSinceEpoch.toString();
+    Reference ref = FirebaseStorage.instance
+        .ref()
+        .child("images")
+        .child("post_$postId.jpg");
+    await ref.putFile(image);
+    downloadURL = await ref.getDownloadURL();
+    return downloadURL;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Add Service")),
+      appBar: AppBar(title: const Text("Add Service")),
       body: Form(
           key: _formKey,
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
             child: ListView(
               children: [
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 10.0),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0),
                   child: TextFormField(
                     autofocus: false,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Service Name',
-                      labelStyle: TextStyle(fontSize: 20.0),
-                      border: OutlineInputBorder(),
+                      labelStyle: const TextStyle(fontSize: 20.0),
+                      border: const OutlineInputBorder(),
                       errorStyle:
                           TextStyle(color: Colors.redAccent, fontSize: 15),
                     ),
@@ -120,10 +155,10 @@ class _ServicesAddState extends State<ServicesAdd> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 10.0),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0),
                   child: TextFormField(
                     autofocus: false,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Service Duration',
                       labelStyle: TextStyle(fontSize: 20.0),
                       border: OutlineInputBorder(),
@@ -140,15 +175,15 @@ class _ServicesAddState extends State<ServicesAdd> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 10.0),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0),
                   child: TextFormField(
                     autofocus: false,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Service Cost',
-                      labelStyle: TextStyle(fontSize: 20.0),
-                      border: OutlineInputBorder(),
-                      errorStyle:
-                          TextStyle(color: Colors.redAccent, fontSize: 15),
+                      labelStyle: const TextStyle(fontSize: 20.0),
+                      border: const OutlineInputBorder(),
+                      errorStyle: const TextStyle(
+                          color: Colors.redAccent, fontSize: 15),
                     ),
                     controller: _servicePrice,
                     validator: (value) {
@@ -160,15 +195,15 @@ class _ServicesAddState extends State<ServicesAdd> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(vertical: 10.0),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0),
                   child: TextFormField(
                     autofocus: false,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Service Description',
                       labelStyle: TextStyle(fontSize: 20.0),
-                      border: OutlineInputBorder(),
-                      errorStyle:
-                          TextStyle(color: Colors.redAccent, fontSize: 15),
+                      border: const OutlineInputBorder(),
+                      errorStyle: const TextStyle(
+                          color: Colors.redAccent, fontSize: 15),
                     ),
                     controller: _serviceInfo,
                     validator: (value) {
@@ -180,48 +215,69 @@ class _ServicesAddState extends State<ServicesAdd> {
                   ),
                 ),
                 Container(
+                  child: ElevatedButton(
+                      onPressed: () {
+                        selectImage();
+                      },
+                      child: const Text("Add Image")),
+                ),
+                Container(
                     child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      CollectionReference hospitals =
-                          FirebaseFirestore.instance.collection('hospitals');
-                      FirebaseAuth auth = FirebaseAuth.instance;
-                      String? uid = auth.currentUser?.uid.toString();
-                      FirebaseFirestore.instance
-                          .collection('hospitals')
-                          .doc(uid)
-                          .collection('services')
-                          .doc()
-                          .set({
-                        "serviceName": _serviceName.text,
-                        "serviceStart": _serviceStart.text,
-                        "serviceEnd": _serviceEnd.text,
-                        "serviceTime": _serviceTime.text,
-                        "serviceInfo": _serviceInfo.text,
-                        "servicePrice": _servicePrice.text
-                      }).then((value) {
+                      serviceImg = await uploadFile(_image);
+                      if (serviceImg != null) {
+                        CollectionReference hospitals =
+                            FirebaseFirestore.instance.collection('hospitals');
+                        FirebaseAuth auth = FirebaseAuth.instance;
+                        String? uid = auth.currentUser?.uid.toString();
+                        FirebaseFirestore.instance
+                            .collection('hospitals')
+                            .doc(uid)
+                            .collection('services')
+                            .doc()
+                            .set({
+                          "serviceName": _serviceName.text,
+                          "serviceStart": _serviceStart.text,
+                          "serviceEnd": _serviceEnd.text,
+                          "serviceTime": _serviceTime.text,
+                          "serviceInfo": _serviceInfo.text,
+                          "servicePrice": _servicePrice.text,
+                          "serviceImage": serviceImg.toString()
+                        }).then((value) {
+                          Fluttertoast.showToast(
+                              msg: "Service Added Successfully",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.green,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                          // Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //         builder: (context) => const ServicesShow()));
+                          Navigator.pop(context);
+                        }).onError((error, stackTrace) {
+                          Fluttertoast.showToast(
+                              msg: "Information Not Updated \n Try Again Later",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                        });
+                      } else {
                         Fluttertoast.showToast(
-                            msg: "Service Added Successfully",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.green,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ServicesShow()));
-                      }).onError((error, stackTrace) {
-                        Fluttertoast.showToast(
-                            msg: "Information Not Updated \n Try Again Later",
+                            msg: "Please Fill all the information",
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.BOTTOM,
                             timeInSecForIosWeb: 1,
                             backgroundColor: Colors.red,
                             textColor: Colors.white,
                             fontSize: 16.0);
-                      });
+                      }
                     }
                   },
                   child: const Text("Add Service"),

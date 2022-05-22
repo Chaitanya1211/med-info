@@ -28,7 +28,10 @@ class Cards extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 TextButton(
-                  child: const Text('EDIT'),
+                  child: const Text(
+                    'EDIT',
+                    style: TextStyle(color: Colors.black),
+                  ),
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => toScreen));
