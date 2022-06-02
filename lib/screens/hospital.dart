@@ -21,29 +21,39 @@ class _HospitalState extends State<Hospital> {
     return Scaffold(
         appBar: AppBar(title: Text('Hello')),
         body: Container(
-          margin: EdgeInsets.all(20),
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/mainbg.jpg'), fit: BoxFit.cover)),
+          // margin: EdgeInsets.all(20),
+          padding: EdgeInsets.all(20),
           child: Center(
               child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Cards(
-                Maintitle: "About Doctors",
-                Subsubtitle: "Subtitle 1",
+                Maintitle: "DOCTORS",
+                Subsubtitle:
+                    "Show the current doctors working with your organization\nAlso showcase their Speciality, Years of Experience and Qualifications.",
                 shade: Colors.amber,
                 toScreen: DoctorShow(),
+                backgrondImg: 'assets/doctor.jpg',
               ),
               Cards(
-                Maintitle: "Update Beds Availability",
-                Subsubtitle: "Subtitle 2",
-                shade: Colors.blue,
-                toScreen: Beds(),
-              ),
-              Cards(
-                Maintitle: "Update Services",
-                Subsubtitle: "Subtitle 3",
+                Maintitle: "SERVICES",
+                Subsubtitle:
+                    "Show the current services provided by your organization along with their details such that cost, duration and available time",
                 shade: Colors.green,
                 toScreen: ServicesShow(),
-              )
+                backgrondImg: 'assets/services.png',
+              ),
+              Cards(
+                Maintitle: "BEDS",
+                Subsubtitle:
+                    "Show the current count of beds avaialable in organization along with their cost and type",
+                shade: Colors.blue,
+                toScreen: Beds(),
+                backgrondImg: 'assets/bed2.jpg',
+              ),
             ],
           )),
         ),

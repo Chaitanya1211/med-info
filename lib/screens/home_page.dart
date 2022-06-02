@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_info/SignInSignUp/hospital_sign_in.dart';
-import 'package:med_info/screens/user.dart';
+import 'package:med_info/user/user.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

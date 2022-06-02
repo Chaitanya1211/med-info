@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:med_info/about/about_show.dart';
-// import 'package:med_info/screens/hospitalDetails/personal_info.dart';
 import 'package:med_info/SignInSignUp/hospital_sign_in.dart';
 
 class HospitalDrawer extends StatefulWidget {

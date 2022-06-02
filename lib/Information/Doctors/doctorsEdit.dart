@@ -88,188 +88,202 @@ class _DoctorEditState extends State<DoctorEdit> {
                   TextEditingController(text: data['docSpec']);
               TextEditingController _docRegNo =
                   TextEditingController(text: data['docRegNo']);
-              return Padding(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-                child: ListView(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10.0),
-                      child: TextFormField(
-                        // initialValue: data['docName'],
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          labelText: 'Doctor Name',
-                          labelStyle: TextStyle(fontSize: 20.0),
-                          border: OutlineInputBorder(),
-                          errorStyle:
-                              TextStyle(color: Colors.redAccent, fontSize: 15),
+              return Container(
+                // decoration: BoxDecoration(
+                //     image: DecorationImage(
+                //         image: AssetImage('assets/doctor.jpg'),
+                //         fit: BoxFit.cover,
+                //         colorFilter: ColorFilter.mode(
+                //             Colors.black.withOpacity(0.3), BlendMode.darken))),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+                  child: ListView(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10.0),
+                        child: TextFormField(
+                          // initialValue: data['docName'],
+                          autofocus: false,
+                          decoration: InputDecoration(
+                            labelText: 'Doctor Name',
+                            labelStyle: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold),
+                            border: OutlineInputBorder(),
+                            errorStyle: TextStyle(
+                                color: Colors.redAccent, fontSize: 15),
+                          ),
+                          controller: _docName,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please Enter Name';
+                            }
+                            return null;
+                          },
                         ),
-                        controller: _docName,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Enter Name';
-                          }
-                          return null;
-                        },
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10.0),
-                      child: TextFormField(
-                        // initialValue: data['docRegNo'],
-                        autofocus: false,
-                        // ignore: prefer_const_constructors
-                        decoration: InputDecoration(
-                          labelText: 'Doctor Registration Number',
-                          labelStyle: TextStyle(fontSize: 20.0),
-                          border: OutlineInputBorder(),
-                          errorStyle:
-                              TextStyle(color: Colors.redAccent, fontSize: 15),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10.0),
+                        child: TextFormField(
+                          // initialValue: data['docRegNo'],
+                          autofocus: false,
+                          // ignore: prefer_const_constructors
+                          decoration: InputDecoration(
+                            labelText: 'Doctor Registration Number',
+                            labelStyle: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold),
+                            border: OutlineInputBorder(),
+                            errorStyle: TextStyle(
+                                color: Colors.redAccent, fontSize: 15),
+                          ),
+                          controller: _docRegNo,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please Enter Name';
+                            }
+                            return null;
+                          },
                         ),
-                        controller: _docRegNo,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Enter Name';
-                          }
-                          return null;
-                        },
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10.0),
-                      child: TextFormField(
-                        // initialValue: data['docQuali'],
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          labelText: 'Doctor Qualification',
-                          labelStyle: TextStyle(fontSize: 20.0),
-                          border: OutlineInputBorder(),
-                          errorStyle:
-                              TextStyle(color: Colors.redAccent, fontSize: 15),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10.0),
+                        child: TextFormField(
+                          // initialValue: data['docQuali'],
+                          autofocus: false,
+                          decoration: InputDecoration(
+                            labelText: 'Doctor Qualification',
+                            labelStyle: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold),
+                            border: OutlineInputBorder(),
+                            errorStyle: TextStyle(
+                                color: Colors.redAccent, fontSize: 15),
+                          ),
+                          controller: _docQuali,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please Enter Name';
+                            }
+                            return null;
+                          },
                         ),
-                        controller: _docQuali,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Enter Name';
-                          }
-                          return null;
-                        },
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10.0),
-                      child: TextFormField(
-                        // initialValue: data['docExp'],
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          labelText: 'Doctor Experience',
-                          labelStyle: TextStyle(fontSize: 20.0),
-                          border: OutlineInputBorder(),
-                          errorStyle:
-                              TextStyle(color: Colors.redAccent, fontSize: 15),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10.0),
+                        child: TextFormField(
+                          // initialValue: data['docExp'],
+                          autofocus: false,
+                          decoration: InputDecoration(
+                            labelText: 'Doctor Experience',
+                            labelStyle: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold),
+                            border: OutlineInputBorder(),
+                            errorStyle: TextStyle(
+                                color: Colors.redAccent, fontSize: 15),
+                          ),
+                          controller: _docExp,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please Enter Name';
+                            }
+                            return null;
+                          },
                         ),
-                        controller: _docExp,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Enter Name';
-                          }
-                          return null;
-                        },
                       ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 10.0),
-                      child: TextFormField(
-                        // initialValue: data['docSpec'],
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          labelText: 'Doctor Specility',
-                          labelStyle: TextStyle(fontSize: 20.0),
-                          border: OutlineInputBorder(),
-                          errorStyle:
-                              TextStyle(color: Colors.redAccent, fontSize: 15),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10.0),
+                        child: TextFormField(
+                          // initialValue: data['docSpec'],
+                          autofocus: false,
+                          decoration: InputDecoration(
+                            labelText: 'Doctor Specility',
+                            labelStyle: TextStyle(
+                                fontSize: 20.0, fontWeight: FontWeight.bold),
+                            border: OutlineInputBorder(),
+                            errorStyle: TextStyle(
+                                color: Colors.redAccent, fontSize: 15),
+                          ),
+                          controller: _docSpec,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please Enter Name';
+                            }
+                            return null;
+                          },
                         ),
-                        controller: _docSpec,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please Enter Name';
-                          }
-                          return null;
-                        },
                       ),
-                    ),
-                    Container(
-                      child: ElevatedButton(
-                        onPressed: () {
-                          selectImage();
-                        },
-                        child: Text("Select Image"),
-                      ),
-                    ),
-                    Container(
+                      Container(
                         child: ElevatedButton(
-                      onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
-                          profileUrl = await uploadFile(_image);
-                          if (profileUrl != null) {
-                            CollectionReference hospitals = FirebaseFirestore
-                                .instance
-                                .collection('hospitals');
-                            FirebaseAuth auth = FirebaseAuth.instance;
-                            String? uid = auth.currentUser?.uid.toString();
-                            FirebaseFirestore.instance
-                                .collection('hospitals')
-                                .doc(uid)
-                                .collection('doctors')
-                                .doc(widget.id)
-                                .update({
-                              "docName": _docName.text,
-                              "docQuali": _docQuali.text,
-                              "docExp": _docExp.text,
-                              "docSpec": _docSpec.text,
-                              "docRegNo": _docRegNo.text,
-                              "docImage": profileUrl.toString()
-                            }).then((value) {
-                              Fluttertoast.showToast(
-                                  msg: "Information Updated successfully",
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.BOTTOM,
-                                  timeInSecForIosWeb: 1,
-                                  backgroundColor: Colors.green,
-                                  textColor: Colors.white,
-                                  fontSize: 16.0);
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             const DoctorShow()));
-                              Navigator.pop(context);
-                            }).onError((error, stackTrace) {
-                              Fluttertoast.showToast(
-                                  msg:
-                                      "Information Not Updated \n Try Again Later",
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.BOTTOM,
-                                  timeInSecForIosWeb: 1,
-                                  backgroundColor: Colors.red,
-                                  textColor: Colors.white,
-                                  fontSize: 16.0);
-                            });
+                          onPressed: () {
+                            selectImage();
+                          },
+                          child: Text("Select Image"),
+                        ),
+                      ),
+                      Container(
+                          child: ElevatedButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            profileUrl = await uploadFile(_image);
+                            if (profileUrl != null) {
+                              CollectionReference hospitals = FirebaseFirestore
+                                  .instance
+                                  .collection('hospitals');
+                              FirebaseAuth auth = FirebaseAuth.instance;
+                              String? uid = auth.currentUser?.uid.toString();
+                              FirebaseFirestore.instance
+                                  .collection('hospitals')
+                                  .doc(uid)
+                                  .collection('doctors')
+                                  .doc(widget.id)
+                                  .update({
+                                "docName": _docName.text,
+                                "docQuali": _docQuali.text,
+                                "docExp": _docExp.text,
+                                "docSpec": _docSpec.text,
+                                "docRegNo": _docRegNo.text,
+                                "docImage": profileUrl.toString()
+                              }).then((value) {
+                                Fluttertoast.showToast(
+                                    msg: "Information Updated successfully",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.green,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //         builder: (context) =>
+                                //             const DoctorShow()));
+                                Navigator.pop(context);
+                              }).onError((error, stackTrace) {
+                                Fluttertoast.showToast(
+                                    msg:
+                                        "Information Not Updated \n Try Again Later",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+                              });
+                            }
+                          } else {
+                            Fluttertoast.showToast(
+                                msg:
+                                    "Information Not Updated \n Try Again Later",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
                           }
-                        } else {
-                          Fluttertoast.showToast(
-                              msg: "Information Not Updated \n Try Again Later",
-                              toastLength: Toast.LENGTH_SHORT,
-                              gravity: ToastGravity.BOTTOM,
-                              timeInSecForIosWeb: 1,
-                              backgroundColor: Colors.red,
-                              textColor: Colors.white,
-                              fontSize: 16.0);
-                        }
-                      },
-                      child: const Text("Edit Information"),
-                    ))
-                  ],
+                        },
+                        child: const Text("Edit Information"),
+                      ))
+                    ],
+                  ),
                 ),
               );
             }),

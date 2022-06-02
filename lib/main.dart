@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
           }
           if (snapshot.connectionState == ConnectionState.done) {
             return MaterialApp(
-              title: 'Flutter Demo',
-              theme: ThemeData(primarySwatch: Colors.green),
+              title: 'MedInfo',
+              theme: ThemeData(primarySwatch: Colors.blue),
               home: HomePage(),
               debugShowCheckedModeBanner: false,
             );

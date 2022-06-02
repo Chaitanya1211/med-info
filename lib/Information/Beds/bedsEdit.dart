@@ -19,6 +19,7 @@ class _BedsEditState extends State<BedsEdit> {
   final _formKey = GlobalKey<FormState>();
   late String bedImage;
   late File _image;
+  late String _image2;
   selectImage() async {
     final picker = ImagePicker();
     final imageFile = await picker.pickImage(source: ImageSource.gallery);
@@ -77,12 +78,8 @@ class _BedsEditState extends State<BedsEdit> {
                   TextEditingController(text: data['bedCost']);
               TextEditingController _bedType =
                   TextEditingController(text: data['bedType']);
-              // TextEditingController _serviceStart =
-              //     TextEditingController(text: data['serviceStart']);
-              // TextEditingController _serviceTime =
-              //     TextEditingController(text: data['serviceTime']);
-              // TextEditingController _servicePrice =
-              //     TextEditingController(text: data['servicePrice']);
+
+              _image2 = data['bedImage'];
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                 child: ListView(
@@ -151,77 +148,12 @@ class _BedsEditState extends State<BedsEdit> {
                         },
                       ),
                     ),
-                    // Container(
-                    //   margin: EdgeInsets.symmetric(vertical: 10.0),
-                    //   child: TextFormField(
-                    //     // initialValue: data['docExp'],
-                    //     autofocus: false,
-                    //     decoration: InputDecoration(
-                    //       labelText: 'Service Duration',
-                    //       labelStyle: TextStyle(fontSize: 20.0),
-                    //       border: OutlineInputBorder(),
-                    //       errorStyle:
-                    //           TextStyle(color: Colors.redAccent, fontSize: 15),
-                    //     ),
-                    //     controller: _serviceTime,
-                    //     validator: (value) {
-                    //       if (value == null || value.isEmpty) {
-                    //         return 'Please Enter Name';
-                    //       }
-                    //       return null;
-                    //     },
-                    //   ),
-                    // ),
-                    // Container(
-                    //   margin: EdgeInsets.symmetric(vertical: 10.0),
-                    //   child: TextFormField(
-                    //     // initialValue: data['docSpec'],
-                    //     autofocus: false,
-                    //     decoration: InputDecoration(
-                    //       labelText: 'Service Cost',
-                    //       labelStyle: TextStyle(fontSize: 20.0),
-                    //       border: OutlineInputBorder(),
-                    //       errorStyle:
-                    //           TextStyle(color: Colors.redAccent, fontSize: 15),
-                    //     ),
-                    //     controller: _servicePrice,
-                    //     validator: (value) {
-                    //       if (value == null || value.isEmpty) {
-                    //         return 'Please Enter Name';
-                    //       }
-                    //       return null;
-                    //     },
-                    //   ),
-                    // ),
-                    // Container(
-                    //   margin: EdgeInsets.symmetric(vertical: 10.0),
-                    //   child: TextFormField(
-                    //     // initialValue: data['docSpec'],
-                    //     autofocus: false,
-                    //     decoration: InputDecoration(
-                    //       labelText: 'Service Description',
-                    //       labelStyle: TextStyle(fontSize: 20.0),
-                    //       border: OutlineInputBorder(),
-                    //       errorStyle:
-                    //           TextStyle(color: Colors.redAccent, fontSize: 15),
-                    //     ),
-                    //     controller: _serviceInfo,
-                    //     validator: (value) {
-                    //       if (value == null || value.isEmpty) {
-                    //         return 'Please Enter Name';
-                    //       }
-                    //       return null;
-                    //     },
-                    //   ),
-                    // ),
-                    // Container(
-                    //   height: MediaQuery.of(context).size.width * 0.5,
-                    //   width: double.infinity,
-                    //   // color: Colors.amberAccent,
-                    //   decoration: BoxDecoration(
-                    //       image: DecorationImage(
-                    //           image: NetworkImage(data['serviceImage']))),
-                    // ),
+                    Container(
+                      child: Image.network(
+                        _image2,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
                     Container(
                       child: ElevatedButton(
                         onPressed: () {
@@ -250,10 +182,7 @@ class _BedsEditState extends State<BedsEdit> {
                               "bedName": _bedName.text,
                               "bedCost": _bedCost.text,
                               "bedType": _bedType.text,
-                              // "serviceTime": _serviceTime.text,
-                              // "servicePrice": _servicePrice.text,
                               "bedImage": bedImage.toString(),
-                              // "serviceInfo": _serviceInfo.text
                             }).then((value) {
                               Fluttertoast.showToast(
                                   msg: "Information Updated successfully",
