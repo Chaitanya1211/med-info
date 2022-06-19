@@ -14,6 +14,7 @@ class HospShow extends StatefulWidget {
 }
 
 class _HospShowState extends State<HospShow> {
+  String _image = '';
   late final String hosp;
   @override
   void initState() {
@@ -25,7 +26,7 @@ class _HospShowState extends State<HospShow> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      padding: EdgeInsets.all(20),
+      // padding: EdgeInsets.all(20),
       child: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         future:
             FirebaseFirestore.instance.collection('hospitals').doc(hosp).get(),
@@ -38,19 +39,76 @@ class _HospShowState extends State<HospShow> {
             return Center(child: CircularProgressIndicator());
           }
           var data = (snapshot.data!.data() as Map<String, dynamic>);
-          return Padding(
-            padding: EdgeInsets.all(5),
-            child: Center(
-              child: Container(
+          return Scaffold(
+            body: Container(
+              child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("Name of hospital : ${data['institutename']}"),
-                    // Text("Name of hospital : ${data['institutename']}"),
-                    // Text("Name of hospital : ${data['institutename']}"),
-                    // Text("Name of hospital $data['url']"),
-                    // Text("Name of hospital $data['startTime']"),
+                    Text(
+                      "${data['institutename']}",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.width * 0.5,
+                      width: double.infinity,
+                      child: Image.network(
+                        data['hospImgUrl'] != null
+                            ? data['hospImgUrl']
+                            : NetworkImage(
+                                    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
+                                .toString(),
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          }
+                          return Center(child: CircularProgressIndicator());
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                      child: Column(children: [
+                        Text(
+                          "Address",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                            "${data['addressStreet'] != null ? data['addressStreet'] : Text("NA")}, ${data['addressCity'] != null ? data['addressCity'] : Text("NA")}, ${data['addressState'] != null ? data['addressState'] : Text("NA")}, ${data['addressPincode'] != null ? data['addressPincode'] : Text("NA")}")
+                      ]),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      child: Column(children: [
+                        Text(
+                          "Contact Details",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 20),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                            "Phone Number : ${data['phNo'] != null ? data['phNo'] : Text("Not Updated")}"),
+                        Text(
+                            "Email : ${data['contactEmail'] != null ? data['contactEmail'] : Text("Not Updated")}"),
+                        Text(
+                            "Website : ${data['url'] != null ? data['url'] : Text("Not Updated")}")
+                      ]),
+                    ),
                     SizedBox(height: 20),
                     TextButton(
                         onPressed: () {

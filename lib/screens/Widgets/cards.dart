@@ -31,7 +31,8 @@ class Cards extends StatelessWidget {
                   image: AssetImage(backgrondImg),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
-                      Colors.black.withOpacity(0.55), BlendMode.darken))),
+                      Colors.black.withOpacity(0.55), BlendMode.darken)
+                      )),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(children: [

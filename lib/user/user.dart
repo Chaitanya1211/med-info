@@ -11,8 +11,8 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
-  var _image = null;
-  getImage() {}
+  // String _image = '';
+  // getImage() {}
   final Stream<QuerySnapshot<Map<String, dynamic>>> hospitalsStream =
       FirebaseFirestore.instance.collection('hospitals').snapshots();
   @override
@@ -38,13 +38,14 @@ class _UserPageState extends State<UserPage> {
                 elevation: 20,
               ),
               body: Container(
-                color: const Color.fromARGB(255, 142, 233, 145),
+                // color: const Color.fromARGB(255, 142, 233, 145),
+                color: Color.fromARGB(255, 141, 152, 161),
                 child: ListView(
                   padding: EdgeInsets.all(15),
                   children: [
                     for (var i = 0; i < storedocs.length; i++) ...[
                       // print(storedocs[i]['institutename']);
-                      // _image = storedocs[i]['image'],
+                      // _image = storedocs[i]['hospImgUrl'],
                       Card(
                         child: Padding(
                           padding: EdgeInsets.all(15),
@@ -54,16 +55,12 @@ class _UserPageState extends State<UserPage> {
                               Container(
                                 height: MediaQuery.of(context).size.width * 0.5,
                                 width: double.infinity,
-                                // decoration: BoxDecoration(
-                                //     image: (_image != null)
-                                //         ? DecorationImage(
-                                //             image: NetworkImage(
-                                //                 storedocs[i]['hospImgUrl']))
-                                //         : const DecorationImage(
-                                //             image: const NetworkImage(
-                                // "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"))),
                                 child: Image.network(
-                                  storedocs[i]['hospImgUrl'],
+                                  storedocs[i]['hospImgUrl'] != null
+                                      ? storedocs[i]['hospImgUrl']
+                                      : NetworkImage(
+                                              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png")
+                                          .toString(),
                                   loadingBuilder:
                                       (context, child, loadingProgress) {
                                     if (loadingProgress == null) {
@@ -74,37 +71,39 @@ class _UserPageState extends State<UserPage> {
                                   },
                                 ),
                               ),
-                              // Container(
-                              //   height: MediaQuery.of(context).size.width * 0.5,
-                              //   width: double.infinity,
-                              //   child: Image.network(
-                              //     storedocs[i]['image'],
-                              //     loadingBuilder:
-                              //         (context, child, loadingProgress) {
-                              //       if (loadingProgress == null) {
-                              //         return child;
-                              //       }
-                              //       return Center(
-                              //           child: CircularProgressIndicator());
-                              //     },
-                              //   ),
-                              // ),
                               SizedBox(
-                                height: 5,
+                                height: 10,
                               ),
-                              Text(storedocs[i]['institutename']),
+                              Text(
+                                storedocs[i]['institutename'],
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(" From "),
-                                  Text(storedocs[i]['startTime']),
-                                  Text(" - "),
+                                  Text(storedocs[i]['startTime'] != null
+                                      ? storedocs[i]['startTime']
+                                      : "NA".toString()),
+                                  // Text(" - "),
                                   Text(" To "),
-                                  Text(storedocs[i]['endTime'])
+                                  Text(storedocs[i]['endTime'] != null
+                                      ? storedocs[i]['endTime']
+                                      : "NA".toString())
                                 ],
                               ),
-                              Text(storedocs[i]['phNo']),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text("Phone Number"),
+                              Text(storedocs[i]['phNo'] != null
+                                  ? storedocs[i]['phNo']
+                                  : "Null".toString()),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [

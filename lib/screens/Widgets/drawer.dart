@@ -18,7 +18,7 @@ class _HospitalDrawerState extends State<HospitalDrawer> {
         padding: EdgeInsets.all(0),
         children: [
           const DrawerHeader(
-            child: Text('Drawer Header'),
+            child: Text('Hello User'),
           ),
           ListTile(
             title: const Text('Edit Profile'),
@@ -31,10 +31,10 @@ class _HospitalDrawerState extends State<HospitalDrawer> {
             title: const Text('Log Out'),
             onTap: () {
               FirebaseAuth.instance.signOut();
-              Navigator.push(
-                  context,
+              Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
-                      builder: (context) => const HospitalSignIn()));
+                      builder: (context) => const HospitalSignIn()),
+                  ModalRoute.withName('/login'));
             },
           ),
         ],

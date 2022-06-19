@@ -49,7 +49,12 @@ class _ServiceToUserState extends State<ServiceToUser> {
               elevation: 20,
             ),
             body: Container(
-              color: const Color.fromARGB(255, 142, 233, 145),
+              // color: const Color.fromARGB(255, 142, 233, 145),
+
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/services.png'),
+                      fit: BoxFit.cover)),
               // margin: const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 15),
               child: ListView(
                 padding: const EdgeInsets.all(15),

@@ -43,11 +43,14 @@ class _BedsToUserState extends State<BedsToUser> {
           }).toList();
           return Scaffold(
             appBar: AppBar(
-              title: Text("Services available"),
+              title: Text("Beds available"),
               elevation: 20,
             ),
             body: Container(
-              color: const Color.fromARGB(255, 142, 233, 145),
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/bed2.jpg'), fit: BoxFit.cover)),
+              // color: const Color.fromARGB(255, 142, 233, 145),
               // margin: const EdgeInsetsDirectional.fromSTEB(0, 25, 0, 15),
               child: ListView(
                 padding: const EdgeInsets.all(15),

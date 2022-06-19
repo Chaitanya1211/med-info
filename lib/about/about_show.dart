@@ -34,146 +34,231 @@ class _AboutShowState extends State<AboutShow> {
                 // ignore: unused_local_variable
                 var instituteName = output!['institutename'];
                 // var image = output['image']; // <-- Your value
-                return Container(
-                  margin: const EdgeInsets.all(20),
-                  child: ListView(
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Container(
-                            color: Colors.amber,
-                            height: 300,
-                            width: 350,
-                            child: (output['hospImgUrl'] != null)
-                                ? Image.network(output['hospImgUrl'])
-                                : Text("Image not provided"),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Card(
-                            // padding: EdgeInsets.all(10),
-                            elevation: 10,
-                            color: Color.fromARGB(255, 74, 210, 231),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                  // padding : const EdgeInsets.all(10),
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Institute Name",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
-                                    ),
-                                    Text(output['institutename'])
-                                  ]),
+                return Scaffold(
+                  appBar: AppBar(title: Text("Details")),
+                  body: Container(
+                    margin: const EdgeInsets.all(20),
+                    child: ListView(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              // color: Colors.amber,
+                              height: 300,
+                              width: 350,
+                              child: (output['hospImgUrl'] != null)
+                                  ? Image.network(output['hospImgUrl'])
+                                  : Text("Image not provided"),
                             ),
-                          ),
-                          Card(
-                            elevation: 10,
-                            color: Colors.blue,
-                            child: Column(children: [
-                              Text("Institute License Number"),
-                              Text(output['license'])
-                            ]),
-                          ),
-                          // (instituteName != null)
-                          //     ? Text(
-                          //         "Institute Name : ${output['institutename']}")
-                          //     : Text("NULL"),
-                          // (output['addressStreet'] != null)
-                          //     ? Text("Street : ${output['addressStreet']}")
-                          //     : Text("NULL"),
-                          // (output['addressCity'] != null)
-                          //     ? Text("City : ${output['addressCity']}")
-                          //     : Text("NULL"),
-                          // (output['addressState'] != null)
-                          //     ? Text("State : ${output['addressState']}")
-                          //     : Text("NULL"),
-                          // (output['addressPincode'] != null)
-                          //     ? Text(
-                          //         "Institute Name : ${output['addressPincode']}")
-                          //     : Text("NULL"),
-                          // (output['established'] != null)
-                          //     ? Text(
-                          //         "Institute Name : ${output['established']}")
-                          //     : Text("NULL"),
-                          // Container(
-                          //   child: Image.network(output['hospImgUrl']),
-                          // ),
-                          // (output['established'] != null)
-                          //     ? Text("Institute Name : ${output['established']}")
-                          //     : Text("NULL"),
-                          // (output['established'] != null)
-                          //     ? Text("Institute Name : ${output['established']}")
-                          //     : Text("NULL"),
-                          // (output['established'] != null)
-                          //     ? Text("Institute Name : ${output['established']}")
-                          //     : Text("NULL"),
-                          // (output['established'] != null)
-                          //     ? Text("Institute Name : ${output['established']}")
-                          //     : Text("NULL"),
-                          // (output['established'] != null)
-                          //     ? Text("Institute Name : ${output['established']}")
-                          //     : Text("NULL"),
-                          // (output['established'] != null)
-                          //     ? Text("Institute Name : ${output['established']}")
-                          //     : Text("NULL"),
-                          // (output['established'] != null)
-                          //     ? Text("Institute Name : ${output['established']}")
-                          //     : Text("NULL"),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Card(
+                              // padding: EdgeInsets.all(10),
+                              elevation: 10,
+                              // color: Color.fromARGB(255, 74, 210, 231),
+                              color: Colors.blue,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                    // padding : const EdgeInsets.all(10),
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Institute Name",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ],
+                                      ),
+                                      Text(output['institutename'])
+                                    ]),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Card(
+                              elevation: 10,
+                              color: Colors.blue,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(children: [
+                                  Text(
+                                    "Institute License Number",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text(output['license'])
+                                ]),
+                              ),
+                            ),
+                            Card(
+                              elevation: 10,
+                              color: Colors.blue,
+                              child: Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Address",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    (output['addressStreet'] != null)
+                                        ? Text(
+                                            "Street : ${output['addressStreet']}")
+                                        : Text("NULL"),
+                                    (output['addressCity'] != null)
+                                        ? Text(
+                                            "City : ${output['addressCity']}")
+                                        : Text("NULL"),
+                                    (output['addressState'] != null)
+                                        ? Text(
+                                            "State : ${output['addressState']}")
+                                        : Text("NULL"),
+                                    (output['addressPincode'] != null)
+                                        ? Text(
+                                            "Institute Name : ${output['addressPincode']}")
+                                        : Text("NULL"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Card(
+                              elevation: 10,
+                              color: Colors.blue,
+                              child: Padding(
+                                padding: EdgeInsets.all(8),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Contact Detials",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    (output['phNo'] != null)
+                                        ? Text("Street : ${output['phNo']}")
+                                        : Text("NULL"),
+                                    (output['contactEmail'] != null)
+                                        ? Text(
+                                            "City : ${output['contactEmail']}")
+                                        : Text("NULL"),
+                                    (output['url'] != null)
+                                        ? Text("State : ${output['url']}")
+                                        : Text("NULL"),
+                                  ],
+                                ),
+                              ),
+                            )
+                            // (instituteName != null)
+                            //     ? Text(
+                            //         "Institute Name : ${output['institutename']}")
+                            //     : Text("NULL"),
+                            // (output['addressStreet'] != null)
+                            //     ? Text("Street : ${output['addressStreet']}")
+                            //     : Text("NULL"),
+                            // (output['addressCity'] != null)
+                            //     ? Text("City : ${output['addressCity']}")
+                            //     : Text("NULL"),
+                            // (output['addressState'] != null)
+                            //     ? Text("State : ${output['addressState']}")
+                            //     : Text("NULL"),
+                            // (output['addressPincode'] != null)
+                            //     ? Text(
+                            //         "Institute Name : ${output['addressPincode']}")
+                            //     : Text("NULL"),
+                            // (output['established'] != null)
+                            //     ? Text(
+                            //         "Institute Name : ${output['established']}")
+                            //     : Text("NULL"),
+                            // Container(
+                            //   child: Image.network(output['hospImgUrl']),
+                            // ),
+                            // (output['established'] != null)
+                            //     ? Text("Institute Name : ${output['established']}")
+                            //     : Text("NULL"),
+                            // (output['established'] != null)
+                            //     ? Text("Institute Name : ${output['established']}")
+                            //     : Text("NULL"),
+                            // (output['established'] != null)
+                            //     ? Text("Institute Name : ${output['established']}")
+                            //     : Text("NULL"),
+                            // (output['established'] != null)
+                            //     ? Text("Institute Name : ${output['established']}")
+                            //     : Text("NULL"),
+                            // (output['established'] != null)
+                            //     ? Text("Institute Name : ${output['established']}")
+                            //     : Text("NULL"),
+                            // (output['established'] != null)
+                            //     ? Text("Institute Name : ${output['established']}")
+                            //     : Text("NULL"),
+                            // (output['established'] != null)
+                            //     ? Text("Institute Name : ${output['established']}")
+                            //     : Text("NULL"),
 
-                          // Text("Institute Name : ${output['institutename']}"),
-                          // const Text("Address"),
-                          // const SizedBox(
-                          //   height: 10,
-                          // ),
-                          // Text("Street : ${output['addressStreet']}"),
-                          // Text("City : ${output['addressCity']}"),
-                          // Text("State : ${output['addressState']}"),
-                          // Text("Pincode : ${output['addressPincode']}"),
-                          // Text(
-                          //     "Year Of establishment : ${output['established']}"),
-                          // const Text("Working Hours"),
-                          // Text("From: ${output['startTime']}"),
-                          // Text("To : ${output['endTime']}"),
-                          // const Text("Contact Details"),
-                          // const SizedBox(
-                          //   height: 5,
-                          // ),
-                          // Text("Phone Number : ${output['phNo']}"),
-                          // Text("Email : ${output['contactEmail']}"),
-                          // Text("Website Link : ${output['url']}"),
-                          // Text("Last Edited on ${output['lastUpdatedOn']}"),
-                          // Padding(
-                          //   padding: EdgeInsets.all(8),
-                          //   child: Image.network(
-                          //     image,
-                          //     loadingBuilder: (BuildContext context, Widget child,
-                          //         ImageChunkEvent? loadingProgress) {
-                          //       if (loadingProgress == null) return child;
-                          //       return Center(
-                          //         child: CircularProgressIndicator(
-                          //           value: loadingProgress.expectedTotalBytes !=
-                          //                   null
-                          //               ? loadingProgress.cumulativeBytesLoaded /
-                          //                   loadingProgress.expectedTotalBytes!
-                          //               : null,
-                          //         ),
-                          //       );
-                          //     },
-                          //   ),
-                          // )
-                        ],
-                      ),
-                    ],
+                            // Text("Institute Name : ${output['institutename']}"),
+                            // const Text("Address"),
+                            // const SizedBox(
+                            //   height: 10,
+                            // ),
+                            // Text("Street : ${output['addressStreet']}"),
+                            // Text("City : ${output['addressCity']}"),
+                            // Text("State : ${output['addressState']}"),
+                            // Text("Pincode : ${output['addressPincode']}"),
+                            // Text(
+                            //     "Year Of establishment : ${output['established']}"),
+                            // const Text("Working Hours"),
+                            // Text("From: ${output['startTime']}"),
+                            // Text("To : ${output['endTime']}"),
+                            // const Text("Contact Details"),
+                            // const SizedBox(
+                            //   height: 5,
+                            // ),
+                            // Text("Phone Number : ${output['phNo']}"),
+                            // Text("Email : ${output['contactEmail']}"),
+                            // Text("Website Link : ${output['url']}"),
+                            // Text("Last Edited on ${output['lastUpdatedOn']}"),
+                            // Padding(
+                            //   padding: EdgeInsets.all(8),
+                            //   child: Image.network(
+                            //     image,
+                            //     loadingBuilder: (BuildContext context, Widget child,
+                            //         ImageChunkEvent? loadingProgress) {
+                            //       if (loadingProgress == null) return child;
+                            //       return Center(
+                            //         child: CircularProgressIndicator(
+                            //           value: loadingProgress.expectedTotalBytes !=
+                            //                   null
+                            //               ? loadingProgress.cumulativeBytesLoaded /
+                            //                   loadingProgress.expectedTotalBytes!
+                            //               : null,
+                            //         ),
+                            //       );
+                            //     },
+                            //   ),
+                            // )
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               }

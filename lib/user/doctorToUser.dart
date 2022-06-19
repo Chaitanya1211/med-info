@@ -44,8 +44,14 @@ class _DoctorToUserState extends State<DoctorToUser> {
             storedocs.add(a);
           }).toList();
           return Scaffold(
+            appBar: AppBar(title: Text("Doctors Available")),
             body: Container(
-              color: Color.fromARGB(255, 142, 233, 145),
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage('assets/doctor.jpg'),
+                      fit: BoxFit.cover)),
+
+              // color: Color.fromARGB(255, 142, 233, 145),
               child: ListView(
                 padding: EdgeInsets.all(15),
                 children: [

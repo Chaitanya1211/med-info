@@ -102,42 +102,42 @@ class _AboutUsEditState extends State<AboutUsEdit> {
                 return Center(child: CircularProgressIndicator());
               }
               var data = (snapshot.data!.data() as Map<String, dynamic>);
-              TextEditingController _addressStreet = TextEditingController(
-                  text: (data['addressStreet'] != null)
-                      ? data['addressStreet']
-                      : Text("NULL"));
-              TextEditingController _addressCity = TextEditingController(
-                  text: (data['addressCity'] != null)
-                      ? data['addressCity']
-                      : Text("NULL"));
-              TextEditingController _addressState = TextEditingController(
-                  text: (data['addressState'] != null)
-                      ? data['addressState']
-                      : Text("NULL"));
-              TextEditingController _addressPincode = TextEditingController(
-                  text: (data['addressPincode'] != null)
-                      ? data['addressPincode']
-                      : Text("NULL"));
-              TextEditingController _startTime = TextEditingController(
-                  text: (data['startTime'] != null)
-                      ? data['startTime']
-                      : Text("NULL"));
-              TextEditingController _endtime = TextEditingController(
-                  text: (data['endTime'] != null)
-                      ? data['endTime']
-                      : Text("NULL"));
-              TextEditingController _established = TextEditingController(
-                  text: (data['established'] != null)
-                      ? data['established']
-                      : Text("NULL"));
-              TextEditingController _phNo = TextEditingController(
-                  text: (data['phNo'] != null) ? data['phNo'] : Text("NULL"));
-              TextEditingController _contactEmail = TextEditingController(
-                  text: (data['contactEmail'] != null)
-                      ? data['contactEmail']
-                      : Text("NULL"));
-              TextEditingController _url = TextEditingController(
-                  text: (data['url'] != null) ? data['url'] : Text("NULL"));
+              // TextEditingController _addressStreet = TextEditingController(
+              //     text: (data['addressStreet'] != null)
+              //         ? data['addressStreet']
+              //         : Text("NULL"));
+              // TextEditingController _addressCity = TextEditingController(
+              //     text: (data['addressCity'] != null)
+              //         ? data['addressCity']
+              //         : Text("NULL"));
+              // TextEditingController _addressState = TextEditingController(
+              //     text: (data['addressState'] != null)
+              //         ? data['addressState']
+              //         : Text("NULL"));
+              // TextEditingController _addressPincode = TextEditingController(
+              //     text: (data['addressPincode'] != null)
+              //         ? data['addressPincode']
+              //         : Text("NULL"));
+              // TextEditingController _startTime = TextEditingController(
+              //     text: (data['startTime'] != null)
+              //         ? data['startTime']
+              //         : Text("NULL"));
+              // TextEditingController _endtime = TextEditingController(
+              //     text: (data['endTime'] != null)
+              //         ? data['endTime']
+              //         : Text("NULL"));
+              // TextEditingController _established = TextEditingController(
+              //     text: (data['established'] != null)
+              //         ? data['established']
+              //         : Text("NULL"));
+              // TextEditingController _phNo = TextEditingController(
+              //     text: (data['phNo'] != null) ? data['phNo'] : Text("NULL"));
+              // TextEditingController _contactEmail = TextEditingController(
+              //     text: (data['contactEmail'] != null)
+              //         ? data['contactEmail']
+              //         : Text("NULL"));
+              // TextEditingController _url = TextEditingController(
+              //     text: (data['url'] != null) ? data['url'] : Text("NULL"));
               return Container(
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
